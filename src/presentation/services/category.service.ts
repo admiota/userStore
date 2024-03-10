@@ -8,9 +8,9 @@ export class CategoryService {
     constructor() { }
     
     async createCategory(createCategoryDto: CreateCategoryDto, user: UserEntity) {
-        const categoryExists = await CategoryModel.findOne({ name: createCategoryDto.name });
-        if (categoryExists) throw CustomError.badRequest('Category already exists');
         try {
+            const categoryExists = await CategoryModel.findOne({ name: createCategoryDto.name });
+            if (categoryExists) throw CustomError.badRequest('Category already exists');
             const category = new CategoryModel({
                 //pongo todas las primeras propiedades y luego la última que es la de user
                 ...createCategoryDto,

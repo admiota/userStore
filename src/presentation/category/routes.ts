@@ -10,8 +10,8 @@ export class CategoryRoutes {
     const categoryService = new CategoryService();
     const categoryController = new CategoryController(categoryService);
     // Definir las rutas
-    router.get('/categories',[ AuthMiddleware.validateJWT ], categoryController.getCategories );
-    router.post('/categories',[ AuthMiddleware.validateJWT ],categoryController.createCategory );
+    router.get('/',[ AuthMiddleware.validateJWT ], categoryController.getCategories );
+    router.post('/',[ AuthMiddleware.validateJWT ],categoryController.createCategory );
 
     return router;
   }

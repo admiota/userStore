@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    desciption: {
+    description: {
         type: String,
     },
     user: {
@@ -29,5 +29,12 @@ const productSchema = new mongoose.Schema({
     }
 });
 
+productSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform(doc, ret, options) {
+        delete ret._id
+    },
+});
 
 export const ProductModel = mongoose.model('Product', productSchema);
